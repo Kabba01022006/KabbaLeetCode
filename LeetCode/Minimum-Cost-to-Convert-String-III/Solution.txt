@@ -1,0 +1,41 @@
+1class Solution {
+2    public int minCost(String source, String target, List<List<String>> rules, int[] costs) {
+3        // we only care abut lengths that are <= 20
+4        int n = costs.length;
+5        int m = source.length();
+6        List<List<Integer>> blank = new ArrayList<>();
+7        for(int i=0;i<n;i++){
+8            blank.add(new ArrayList<>());
+9            for(int j=0;j<rules.get(i).get(0).length();j++)
+10                if(rules.get(i).get(0).charAt(j) == '*')
+11                    blank.get(i).add(j);
+12        }int dp[] = new int[m];
+13        Arrays.fill(dp, -1);
+14        for(int idx=0;idx<m;idx++){
+15            if(source.charAt(idx) == target.charAt(idx))
+16                dp[idx] = idx == 0 ? 0:(dp[idx-1] != -1 ? dp[idx-1]:dp[idx]);
+17            for(int j=0;j<n;j++){
+18                int last = idx+rules.get(j).get(0).length();
+19                if(last > m)
+20                    continue;
+21                StringBuilder temp1 = new StringBuilder(source.substring(idx, last));
+22                StringBuilder temp2 = new StringBuilder(target.substring(idx, last));
+23                for(Integer infect:blank.get(j))
+24                    temp1.setCharAt(infect, '*');
+25                if(temp1.toString().compareTo(rules.get(j).get(0)) == 0 && 
+26                    temp2.toString().compareTo(rules.get(j).get(1)) == 0){
+27                        int extra = costs[j]+blank.get(j).size();
+28                        //System.out.println(temp1+" "+rules.get(j).get(0)+" "+temp2+" "+rules.get(j).get(1));
+29                        if(idx == 0){
+30                            dp[last-1] = dp[last-1] == -1 ? extra:Math.min(dp[last-1], extra);
+31                        }else if(idx-1 >= 0 && dp[idx-1] != -1){
+32                            dp[last-1] = dp[last-1] == -1 ? extra+dp[idx-1]:Math.min(dp[last-1], extra+dp[idx-1]);
+33                        }
+34                }
+35            }
+36        }
+37        // for(int i=0;i<m;i++)
+38        //     System.out.println(dp[i]);
+39        return dp[m-1];
+40    }
+41}
