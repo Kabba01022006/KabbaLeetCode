@@ -1,0 +1,65 @@
+1class Solution {
+2    public String reformatDate(String date) {
+3        int len = date.length();
+4        boolean isDouble = false;
+5        boolean isSingle = false;
+6        char[] str = date.toCharArray();
+7        StringBuilder sb = new StringBuilder();
+8        if(Character.isDigit(str[1])){
+9            isDouble = true;
+10        }
+11        else{
+12            isDouble = false;
+13        }
+14        if(isDouble==true){
+15            for(int i=9;i<len;i++){
+16                sb.append(date.charAt(i));
+17            }
+18            sb.append("-");
+19            String mon = "";
+20            for(int i=5;i<8;i++){
+21                mon = date.substring(5,8);
+22            }
+23            sb.append(tellMonth(mon));
+24            sb.append("-");
+25            for(int i=0;i<2;i++){
+26                sb.append(date.charAt(i));
+27            }
+28        }
+29        else if(isDouble==false){
+30            for(int i=8;i<len;i++){
+31                sb.append(date.charAt(i));
+32            }
+33            sb.append("-");
+34            String mon = "";
+35            for(int i=4;i<7;i++){
+36                mon = date.substring(4,7);
+37            }
+38            sb.append(tellMonth(mon));
+39            sb.append("-");
+40            sb.append("0");
+41            sb.append(date.charAt(0));
+42        }
+43
+44        return sb.toString();
+45    }
+46
+47    public String tellMonth(String month){
+48        if(month.equals("Jan")) return "01";
+49        else if(month.equals("Feb")) return "02";
+50        else if(month.equals("Mar")) return "03";
+51        else if(month.equals("Apr")) return "04";
+52        else if(month.equals("May")) return "05";
+53        else if(month.equals("Jun")) return "06";
+54        else if(month.equals("Jul")) return "07";
+55        else if(month.equals("Aug")) return "08";
+56        else if(month.equals("Sep")) return "09";
+57        else if(month.equals("Oct")) return "10";
+58        else if(month.equals("Nov")) return "11";
+59        else return "12";
+60    }
+61    public boolean isNumber(String day){
+62        if(day.equals("0") || day.equals("1") || day.equals("2") || day.equals("3") || day.equals("4") || day.equals("5") || day.equals("6") || day.equals("7") || day.equals("8") || day.equals("9")) return true;
+63        else return false;
+64    }
+65}
