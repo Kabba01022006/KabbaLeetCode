@@ -1,0 +1,16 @@
+1class Solution {
+2    public boolean searchMatrix(int[][] matrix, int target) {
+3        int n=matrix.length;
+4        int m=matrix[0].length;
+5        int start=0;
+6        int end=(m*n)-1;
+7        while(start<=end){
+8            int mid=start+(end-start)/2;
+9            int element=matrix[mid/m][(mid)%m];
+10            if(element==target) return true;
+11            else if(element>target) end=mid-1;
+12            else start=mid+1;
+13        }
+14        return false;
+15    }
+16}
