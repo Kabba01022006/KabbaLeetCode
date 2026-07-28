@@ -1,0 +1,56 @@
+1class Solution {
+2    static final long MOD = 1_000_000_007L;
+3
+4    public int maxTotalValue(int[] value, int[] decay, int m) {
+5        int n = value.length;
+6
+7        long lo = 1, hi = 1_000_000_000L;
+8        long threshold = 0;
+9
+10        while (lo <= hi) {
+11            long mid = lo + (hi - lo) / 2;
+12
+13            if (countTerms(value, decay, mid, m) >= m) {
+14                threshold = mid;
+15                lo = mid + 1;
+16            } else {
+17                hi = mid - 1;
+18            }
+19        }
+20
+21        long sum = 0;
+22        long used = 0;
+23
+24        for (int i = 0; i < n; i++) {
+25            long a = value[i];
+26            long d = decay[i];
+27
+28            if (a <= threshold) continue;
+29
+30            long cnt = (a - (threshold + 1)) / d + 1;
+31            used += cnt;
+32
+33            long last = a - (cnt - 1) * d;
+34            sum += cnt * (a + last) / 2;
+35        }
+36
+37        long remaining = m - used;
+38        sum += remaining * threshold;
+39
+40        return (int)(sum % MOD);
+41    }
+42
+43    private long countTerms(int[] value, int[] decay, long x, int m) {
+44        long cnt = 0;
+45
+46        for (int i = 0; i < value.length; i++) {
+47            if (value[i] < x) continue;
+48
+49            cnt += (value[i] - x) / (long) decay[i] + 1;
+50
+51            if (cnt >= m) return cnt;
+52        }
+53
+54        return cnt;
+55    }
+56}
