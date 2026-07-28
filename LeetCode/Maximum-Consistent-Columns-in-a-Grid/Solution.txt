@@ -1,0 +1,34 @@
+1class Solution {
+2    private class Pair{
+3        private int first;
+4        private int second;
+5        private Pair(int first, int second){
+6            this.first = first;
+7            this.second = second;
+8        }
+9    }
+10    public int maxConsistentColumns(int[][] grid, int limit) {
+11        int n = grid.length;
+12        int m = grid[0].length;
+13        int[] chain = new int[m];
+14        Arrays.fill(chain, 1);
+15        for(int col=0;col<m;col++){
+16            int window = (int)1e5;
+17            HashSet<Integer> commons = new HashSet<>();
+18            for(int prev=0;prev<col;prev++)
+19                commons.add(prev);
+20            for(int row=0;row<n;row++){
+21                int curr = grid[row][col];
+22                for(int prev=0;prev<col;prev++){
+23                    if(Math.abs(curr-grid[row][prev]) > limit)
+24                        commons.remove(prev);
+25                }
+26            }
+27            for(Integer idx:commons)
+28                chain[col] = Math.max(chain[col], 1+chain[idx]);
+29        }int ans = 0;
+30        for(Integer val:chain)
+31            ans = Math.max(ans, val);
+32        return ans;
+33    }
+34}
