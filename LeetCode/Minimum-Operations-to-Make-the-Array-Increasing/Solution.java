@@ -1,17 +1,19 @@
-1int minOperations(int* nums, int numsSize){
-2    int count=0;
-3    if(numsSize==1){
-4        count=0;
-5    }
-6    else{
-7        for(int i=0;i<numsSize;i++){
-8            for(int j=i+1;j<numsSize;j++){
-9                while(nums[i]>=nums[j]){
-10                    nums[j]+=1;
-11                    count++;
-12                }
-13            }
-14        }
-15    }
-16    return count;
-17}
+1class Solution {
+2    public int minOperations(int[] nums) {
+3        int i=0;
+4        int j=1;
+5        int ops=0;
+6        while(j<nums.length){
+7            if(nums[i]<nums[j]){
+8                i++;
+9                j++;
+10            }
+11            else if(nums[i]>=nums[j]){
+12                int diff =nums[i]-nums[j]+1;
+13                nums[j]+=diff;
+14                ops+=diff;
+15            }
+16        }
+17        return ops;
+18    }
+19}
