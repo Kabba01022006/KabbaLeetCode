@@ -1,15 +1,10 @@
 1class Solution {
 2    public int findNumbers(int[] nums) {
-3        int evenCount=0;
+3        int count=0;
 4        for(int i=0;i<nums.length;i++){
-5            int temp=nums[i];
-6            int count=0;
-7            while(nums[i]!=0){
-8                nums[i]=nums[i]/10;
-9                count++;
-10            }
-11            if(count%2==0) evenCount++;
-12        }
-13        return evenCount;
-14    }
-15}
+5            String str = String.valueOf(nums[i]);
+6            if(str.length()%2==0) count++;
+7        }
+8        return count;
+9    }
+10}
