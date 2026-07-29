@@ -1,16 +1,19 @@
 1class Solution {
 2    public int maxProduct(int n) {
-3        String str = Integer.toString(n);
-4        int count = str.length();
-5        int[] arr = new int[count];
-6        int i=0;
-7        while(n!=0){
-8            int digit = n%10;
-9            arr[i]=digit;
-10            n=n/10;
-11            i++;
-12        }
-13        Arrays.sort(arr);
-14        return (arr[arr.length-1]*arr[arr.length-2]);
-15    }
-16}
+3        int max1=0;
+4        int max2=0;
+5
+6        while(n!=0){
+7            int digit=n%10;
+8            if(digit>=max1){
+9                max2=max1;
+10                max1=digit;
+11            }
+12            else if(digit>max2){
+13                max2=digit;
+14            }
+15            n=n/10;
+16        }
+17        return max1*max2;
+18    }
+19}
