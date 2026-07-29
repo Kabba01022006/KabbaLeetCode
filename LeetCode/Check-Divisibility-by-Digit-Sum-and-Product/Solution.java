@@ -1,19 +1,14 @@
-1bool checkDivisibility(int n) {
-2    int original_n= n;
-3    int digit;
-4    bool flag = false; //not divisible
-5    int sumOfDigits=0;
-6    int productOfDigits=1;
-7    int sum;
-8    while(n>0){
-9        digit=n%10;
-10        sumOfDigits+=digit;
-11        productOfDigits*=digit;
-12        n=n/10;
+1class Solution {
+2    public boolean checkDivisibility(int n) {
+3        int temp=n;
+4        int sum=0;
+5        int pro=1;
+6        while(temp!=0){
+7            sum+=temp%10;
+8            pro*=temp%10;
+9            temp=temp/10;
+10        }
+11        if(n%(pro+sum)==0) return true;
+12        else return false;
 13    }
-14    sum = sumOfDigits + productOfDigits ;
-15    if(original_n%sum==0){
-16        flag = true;
-17    }
-18    return flag;
-19}
+14}
