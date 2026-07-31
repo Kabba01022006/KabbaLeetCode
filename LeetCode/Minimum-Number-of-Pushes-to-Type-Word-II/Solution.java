@@ -5,23 +5,20 @@
 5            char ch = word.charAt(i);
 6            freq[ch-'a']++;
 7        }
-8        if(freq.length==1){
-9            return freq[0];
-10        }
-11        Arrays.sort(freq);
-12        int left=0;
-13        int right=freq.length-1;
-14        while(left<right){
-15            int temp=freq[left];
-16            freq[left]=freq[right];
-17            freq[right]=temp;
-18            left++;
-19            right--;
-20        }
-21        long clicks=0;
-22        for(int i=0;i<freq.length;i++){
-23            clicks = clicks + ((i/8)+1)*freq[i];
-24        }
-25        return (int)clicks;
-26    }
-27}
+8        Arrays.sort(freq);
+9        int left=0;
+10        int right=freq.length-1;
+11        while(left<right){
+12            int temp=freq[left];
+13            freq[left]=freq[right];
+14            freq[right]=temp;
+15            left++;
+16            right--;
+17        }
+18        int clicks=0;
+19        for(int i=0;i<freq.length;i++){
+20            clicks = clicks + ((i/8)+1)*freq[i];
+21        }
+22        return clicks;
+23    }
+24}
