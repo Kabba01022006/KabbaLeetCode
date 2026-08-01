@@ -1,0 +1,79 @@
+1class Solution {
+2public:
+3/*
+4so we know 
+5
+6ch + cb >= cm
+7
+8
+9nh + nb >= nm
+10
+11
+12nh = max(0, ch-cm)
+13
+14
+15
+16*/
+17
+18
+19    
+20#define ll long long
+21    long long minInitialStrength(vector<int>& monsters, vector<vector<int>>& boosts) {
+22        ll n=monsters.size();
+23        vector<ll>bonus(n+1,0);
+24
+25        for(auto ele : boosts){
+26
+27            ll start=ele[0];
+28            ll end=ele[1];
+29            ll p=ele[2];
+30
+31             bonus[start]+=p;
+32             bonus[end+1]-=p;
+33            
+34        }
+35        for(int i=1;i<bonus.size();i++){
+36            bonus[i]+=bonus[i-1];
+37        }
+38
+39        //last bonus + health >= last monster
+40        ll lastbonus=bonus[n-1];
+41        ll lastmonster=monsters[n-1];
+42        ll lasthealth;
+43        
+44        if(lastbonus>=lastmonster)lasthealth=0;
+45        else lasthealth=lastmonster-lastbonus;
+46        
+47        vector<ll>dp(n);
+48        dp[n-1]=lasthealth;
+49
+50        for(ll i=n-2;i>=0;i--){
+51            //two eqn
+52            
+53            //ch -  cm + nb >=nh  => ch >=nh+cm -nb
+54            //ch + cb >= cm  => ch >=cm-cb
+55            ll neededbyc=0;
+56            ll neededbyn=0;
+57
+58            neededbyc=max(1ll*0,monsters[i]-bonus[i]);
+59            if(dp[i+1]>0 && neededbyc-monsters[i]<dp[i+1]){
+60                // ch - cm >= nh
+61                ll diff=dp[i+1]-neededbyc;
+62                neededbyc+=(monsters[i]+diff);
+63                
+64            }
+65            dp[i]=neededbyc;
+66        }
+67        // for(int ele : monsters)cout<<ele<<" ";
+68        // cout<<endl;
+69        // for(int ele : bonus)cout<<ele<<" ";
+70        // cout<<endl;
+71        // for(int ele : dp)cout<<ele<<" ";
+72        // cout<<endl;
+73        return dp[0];
+74
+75
+76
+77        
+78    }
+79};
