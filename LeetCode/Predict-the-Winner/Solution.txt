@@ -1,0 +1,19 @@
+1class Solution {
+2public:
+3    bool solve(int i, int j, int profit1, int profit2, vector<int>& nums, bool turn){
+4        if(i > j){
+5            if(profit1 >= profit2) return true;
+6            return false;
+7        }
+8        if(turn){
+9            return solve(i+1,j,profit1+nums[i], profit2, nums, false) || solve(i,j-1,profit1+nums[j], profit2, nums, false);
+10        }
+11        else{
+12            return solve(i+1,j,profit1, profit2+nums[i], nums, true) && solve(i,j-1,profit1, profit2+nums[j], nums, true);
+13        }
+14    }
+15
+16    bool predictTheWinner(vector<int>& nums) {
+17        return solve(0, nums.size()-1, 0, 0, nums, true);
+18    }
+19};
