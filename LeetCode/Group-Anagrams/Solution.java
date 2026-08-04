@@ -17,7 +17,6 @@
 17                map.get(newArr[i]).add(strs[i]);
 18            }
 19        }
-20        List<List<String>> ans = new ArrayList<>(map.values());
-21        return ans;
-22    }
-23}
+20        return new ArrayList<>(map.values());
+21    }
+22}
