@@ -8,11 +8,8 @@
 8                set.add(candyType[i]);
 9                count++;
 10            }
-11            else{
-12                continue;
-13            }
-14        }
-15        if(count<=max) return count;
-16        else return (max);
-17    }
-18}
+11        }
+12        if(count<=max) return count;
+13        else return max;
+14    }
+15}
