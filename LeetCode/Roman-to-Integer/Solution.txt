@@ -1,0 +1,86 @@
+1class Solution {
+2    public int romanToInt(String s) {
+3        int total = 0;
+4        for(int i=0;i<s.length();i++){
+5            char ch = s.charAt(i);
+6            int current = 0;
+7
+8            switch(ch){
+9
+10                case 'I':
+11                current = 1;
+12                break;
+13
+14                case 'V':
+15                current = 5;
+16                break;
+17
+18                case 'X':
+19                current = 10;
+20                break;
+21
+22                case 'L':
+23                current = 50;
+24                break;
+25
+26                case 'C':
+27                current = 100;
+28                break;
+29
+30                case 'D':
+31                current = 500;
+32                break;
+33
+34                case 'M':
+35                current = 1000;
+36                break;
+37            }
+38            if(i<s.length()-1){
+39                char nextch = s.charAt(i+1);
+40                int next = 0;
+41
+42                switch(nextch){
+43                    
+44                    case 'I':
+45                    next = 1;
+46                    break;
+47
+48                    case 'V':
+49                    next = 5;
+50                    break;
+51
+52                    case 'X':
+53                    next = 10;
+54                    break;
+55
+56                    case 'L':
+57                    next = 50;
+58                    break;
+59
+60                    case 'C':
+61                    next = 100;
+62                    break;
+63
+64                    case 'D':
+65                    next = 500;
+66                    break;
+67
+68                    case 'M':
+69                    next = 1000;
+70                    break;
+71                }
+72                if(current<next){
+73                    total = total-current;
+74                }
+75                else{
+76                    total = total+current;
+77                }
+78            }
+79            else{
+80                total = total+current;
+81            }
+82
+83        }
+84        return total;
+85    }
+86}
