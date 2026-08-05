@@ -1,0 +1,14 @@
+1class Solution {
+2    public boolean uniqueOccurrences(int[] arr) {
+3        HashMap<Integer,Integer> map = new HashMap<>();
+4        for(int ele:arr){
+5            map.put(ele,map.getOrDefault(ele,0)+1);
+6        }
+7        HashSet<Integer> set = new HashSet<>();
+8        for(int ele:map.values()){  //map.values() is very important
+9            if(set.contains(ele)) return false;
+10            else set.add(ele);
+11        }
+12        return true;
+13    }
+14}
