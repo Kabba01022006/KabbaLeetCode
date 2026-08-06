@@ -2,19 +2,17 @@
 2    public int smallestNumber(int n, int t) {
 3        int pro=1;
 4        int ori=n;
-5        int keep=n;
-6        if(t==1) return n;
-7        if(n<=t) return t;
-8        while(pro%t!=0){
-9            pro=1;
-10            ori=keep;
-11            while(ori!=0){
-12                pro=pro*(ori%10);
-13                ori=ori/10;
-14            }
-15            if(pro%t==0) return keep;
-16            else keep++;
-17        }
-18        return 0;
-19    }
-20}
+5        if(t==1) return n;
+6        while(pro%t!=0){
+7            pro=1;
+8            ori=n;
+9            while(ori!=0){
+10                pro=pro*(ori%10);
+11                ori=ori/10;
+12            }
+13            if(pro%t==0) return n;
+14            else n++;
+15        }
+16        return 0;
+17    }
+18}
