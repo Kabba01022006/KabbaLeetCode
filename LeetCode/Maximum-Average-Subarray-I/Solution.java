@@ -8,18 +8,17 @@
 8        double sum = 0 ;
 9        int l=0;
 10        int r=k-1;
-11        if(nums.length==1) return (double)nums[0];
-12        for(int i=0;i<=r;i++){
-13            sum+=nums[i];
-14        }
-15        double maxSum=sum;
-16        while(r<nums.length-1){
-17            sum-=nums[l];
-18            l++;
-19            r++;
-20            sum+=nums[r];
-21            maxSum=Math.max(maxSum,sum);
-22        }
-23        return maxSum/k;
-24    }
-25}
+11        for(int i=0;i<=r;i++){
+12            sum+=nums[i];
+13        }
+14        double maxSum=sum;
+15        while(r<nums.length-1){
+16            sum-=nums[l];
+17            l++;
+18            r++;
+19            sum+=nums[r];
+20            maxSum=Math.max(maxSum,sum);
+21        }
+22        return maxSum/k;
+23    }
+24}
