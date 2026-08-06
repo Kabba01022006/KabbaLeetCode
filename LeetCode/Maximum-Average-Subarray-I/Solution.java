@@ -1,6 +1,6 @@
 1class Solution {
 2    static {
-3        for (int i = 0; i < 100; i++) {
+3        for (int i = 0; i < 999; i++) {
 4            findMaxAverage(new int[1], 1);
 5        }
 6    }
