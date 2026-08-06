@@ -1,0 +1,18 @@
+1class Solution {
+2public:
+3    string stoneGameIII(vector<int>& stoneValue) {
+4        int n=stoneValue.size();
+5        vector<int>dp(n+1,0);
+6        for(int i=n-1;i>=0;i--){
+7            int sum=0;
+8            dp[i]=INT_MIN;
+9            for(int k=0;k<3&&i+k<n;k++){
+10                sum+=stoneValue[i+k];
+11                dp[i]=max(dp[i],sum-dp[i+k+1]);
+12            }
+13        }
+14        if(dp[0]>0) return "Alice";
+15        if(dp[0]<0) return "Bob";
+16        return "Tie";
+17    }
+18};
