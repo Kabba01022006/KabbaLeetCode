@@ -1,21 +1,7 @@
-1class Solution {
-2    public void setZeroes(int[][] matrix) {
-3        boolean[] rows = new boolean[matrix.length];
-4        boolean[] cols = new boolean[matrix[0].length];
-5        for(int i=0;i<rows.length;i++){
-6            for(int j=0;j<cols.length;j++){
-7                if(matrix[i][j]==0){
-8                    rows[i]=true;
-9                    cols[j]=true;
-10                }
-11            }
-12        }
-13        for(int i=0;i<rows.length;i++){
-14            for(int j=0;j<cols.length;j++){
-15                if(rows[i]==true || cols[j]==true){  //(rows[i] || cols[j])
-16                    matrix[i][j]=0;
-17                }
-18            }
-19        }
-20    }
-21}
+[[1,1,1],[1,0,1],[1,1,1]]
+[[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+[[1],[0]]
+[[0,1,1],[1,1,1],[1,0,0]]
+[[-4,-2147483648,6,-7,0],[-8,6,-8,-6,0],[2147483647,2,-9,-6,-10]]
+[[2147483647],[2],[3]]
+[[1,2,3,4],[5,0,7,8],[0,10,11,12],[13,14,15,0]]
