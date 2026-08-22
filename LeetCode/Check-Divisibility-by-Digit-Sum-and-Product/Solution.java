@@ -8,7 +8,6 @@
 8            pro*=temp%10;
 9            temp=temp/10;
 10        }
-11        if(n%(pro+sum)==0) return true;
-12        else return false;
-13    }
-14}
+11        return (n%(pro+sum)==0);
+12    }
+13}
